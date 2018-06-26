@@ -35,7 +35,7 @@ make_dirs:
 
 # link input files and utils
 DATA_FILES = $(abspath $(wildcard input/data*))
-MORE_FILES = $(abspath $(wildcard input/OB*) input/Tref input/V.init $(wildcard input/del*) input/topogSamoa.bin)
+MORE_FILES = $(abspath $(wildcard input/OB*) input/Tref input/V.init $(wildcard input/del*) input/topogSamoa.bin $(wildcard input/OB_*))
 link_input:
 	@echo "linking input files to run directory"
 	@ln -fs $(DATA_FILES) input/eedata $(REMOTE_DIR)$(RUN)/run
