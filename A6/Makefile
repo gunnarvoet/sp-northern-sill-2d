@@ -35,13 +35,17 @@ make_dirs:
 
 # link input files and utils
 DATA_FILES = $(abspath $(wildcard input/data*))
-MORE_FILES = $(abspath $(wildcard input/OB*) input/Tref input/V.init $(wildcard input/del*) input/topogSamoa.bin $(wildcard input/OB_*))
+MORE_FILES = $(abspath $(wildcard input/OB*) input/eedata input/Tref input/V.init $(wildcard input/del*) input/topogSamoa.bin $(wildcard input/OB_*))
+CODE_FILES = $(abspath $(wildcard code/*))
+
 link_input:
 	@echo "linking input files to run directory"
-	@ln -fs $(DATA_FILES) input/eedata $(REMOTE_DIR)$(RUN)/run
-	@ln -fs $(MORE_FILES) input/eedata $(REMOTE_DIR)$(RUN)/run
+	@ln -fs $(DATA_FILES) $(REMOTE_DIR)$(RUN)/run
+	@ln -fs $(MORE_FILES) $(REMOTE_DIR)$(RUN)/run
+	@echo "linking code files to build directory"
+	@ln -fs $(CODE_FILES) $(REMOTE_DIR)$(RUN)/build
 	@echo "linking utility script"
-	@ln -fs $(abspath ../utils/glueall.sh) $(REMOTE_DIR)$(RUN)/run/allmnc
+	@ln -fs $(abspath ../utils/gluemncbig) $(REMOTE_DIR)$(RUN)/run/allmnc
 
 # generate the makefile
 genmake:
